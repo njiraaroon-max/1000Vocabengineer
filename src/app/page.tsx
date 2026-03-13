@@ -27,14 +27,14 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="text-center py-10 px-4">
         <h1 className="font-heading text-white text-3xl sm:text-4xl md:text-5xl mb-3 leading-tight">
-          คำศัพท์วิศวะ <span className="text-[#F9A8D4]">1,000</span> คำ
+          คำศัพท์วิศวะ <span className="text-[#F9A8D4]">1,200</span> คำ
         </h1>
         <p className="text-white/80 text-base sm:text-lg max-w-lg mx-auto">
           ที่จะทำให้คุณเก่งขึ้น! เรียนรู้ผ่าน Flashcard, Quiz และเกม Hangman 🎯
         </p>
         <div className="flex justify-center gap-2 mt-4 text-sm text-white/60">
-          <span className="bg-white/10 px-3 py-1 rounded-full">⚙️ 6 ชุด</span>
-          <span className="bg-white/10 px-3 py-1 rounded-full">📚 180+ คำ</span>
+          <span className="bg-white/10 px-3 py-1 rounded-full">📖 12 วิชา</span>
+          <span className="bg-white/10 px-3 py-1 rounded-full">📚 1,200 คำ</span>
           <span className="bg-white/10 px-3 py-1 rounded-full">🎮 3 โหมด</span>
         </div>
       </section>
@@ -69,7 +69,7 @@ export default function HomePage() {
         {/* Vocabulary Sets Grid */}
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {[...Array(6)].map((_, i) => (
+            {[...Array(12)].map((_, i) => (
               <div key={i} className="bg-[#1A1A2E] rounded-2xl p-5 animate-pulse h-52" />
             ))}
           </div>
