@@ -172,10 +172,10 @@ export default function HomePage() {
       </main>
 
       {/* Footer */}
-      <footer className="text-center pb-8 text-white/40 text-sm">
-        <p>
+      <footer className="text-center pb-8 text-sm">
+        <p className="text-white/70 font-semibold">
           Made with ❤️ by{' '}
-          <a href="https://www.stepupth.com" className="text-[#EC4899] hover:underline">
+          <a href="https://www.stepupth.com" className="text-white hover:text-[#F9A8D4] hover:underline transition-colors">
             Step Up Academy
           </a>
         </p>
