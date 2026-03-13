@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Bug, Heart, LogIn, User } from 'lucide-react'
+import { LogIn, User } from 'lucide-react'
 
 export default function Header() {
   const [isLoggedIn] = useState(false)
@@ -25,19 +25,6 @@ export default function Header() {
         </Link>
 
         <div className="flex items-center gap-2">
-          <button
-            className="p-2 rounded-lg hover:bg-white/10 transition-colors text-[#9CA3AF] hover:text-white"
-            title="แจ้งปัญหา"
-          >
-            <Bug size={20} />
-          </button>
-          <button
-            className="p-2 rounded-lg hover:bg-white/10 transition-colors text-[#9CA3AF] hover:text-[#EC4899]"
-            title="สนับสนุน"
-          >
-            <Heart size={20} />
-          </button>
-
           {isLoggedIn ? (
             <button className="w-8 h-8 rounded-full bg-[#EC4899] flex items-center justify-center">
               <User size={18} />

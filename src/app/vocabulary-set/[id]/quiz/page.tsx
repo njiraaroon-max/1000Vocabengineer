@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, Volume2, Settings, Check, X } from 'lucide-react'
+import { Home, Volume2, Check, X } from 'lucide-react'
 import { getVocabularySet, getVocabulariesBySetId } from '@/data/vocabularySets'
 import type { Vocabulary, VocabularySet, SetStats } from '@/types/database'
 
@@ -144,10 +144,10 @@ export default function QuizPage() {
               ทำใหม่อีกครั้ง
             </button>
             <Link
-              href={`/vocabulary-set/${setId}`}
+              href="/"
               className="flex-1 bg-white/10 text-white py-3 rounded-xl hover:bg-white/20 transition-colors text-center"
             >
-              กลับ Flashcard
+              🏠 หน้าแรก
             </Link>
           </div>
         </div>
@@ -161,24 +161,23 @@ export default function QuizPage() {
       <header className="bg-[#0F0F23]/90 backdrop-blur-md border-b border-white/10">
         <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
           <Link
-            href={`/vocabulary-set/${setId}`}
-            className="flex items-center gap-2 text-white hover:text-[#EC4899] transition-colors"
+            href="/"
+            className="flex items-center gap-2 text-white/70 hover:text-white transition-colors"
           >
-            <ArrowLeft size={20} />
+            <Home size={18} />
+            <span className="text-sm hidden sm:inline">หน้าแรก</span>
           </Link>
 
-          <div className="flex items-center gap-4 text-sm">
+          <span className="font-heading text-white text-sm">🧠 Quiz — {vocabSet.title}</span>
+
+          <div className="flex items-center gap-3 text-sm">
             <span className="flex items-center gap-1 text-[#4ADE80]">
               <Check size={16} /> {score}
             </span>
-            <span className="flex items-center gap-1 text-[#9CA3AF]">
-              📚 {questions.length - currentIndex - 1}
+            <span className="text-[#9CA3AF]">
+              {currentIndex + 1}/{questions.length}
             </span>
           </div>
-
-          <button className="p-2 rounded-lg hover:bg-white/10 transition-colors text-[#9CA3AF]">
-            <Settings size={20} />
-          </button>
         </div>
       </header>
 

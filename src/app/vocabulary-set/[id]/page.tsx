@@ -5,8 +5,8 @@ import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  ArrowLeft, Heart, Share2, BookOpen, Settings,
-  ChevronLeft, ChevronRight, Volume2, RotateCcw, Shuffle, HelpCircle
+  Home, Heart, Share2, BookOpen,
+  ChevronLeft, ChevronRight, Volume2, Shuffle, HelpCircle
 } from 'lucide-react'
 import { getVocabularySet, getVocabulariesBySetId } from '@/data/vocabularySets'
 import type { Vocabulary, VocabularySet, SetStats } from '@/types/database'
@@ -25,7 +25,6 @@ export default function FlashcardPage() {
   const [vocabs, setVocabs] = useState<Vocabulary[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [cardPage, setCardPage] = useState(0) // 0=word, 1=meaning, 2=example
-  const [showSettings, setShowSettings] = useState(false)
   const [isShuffled, setIsShuffled] = useState(false)
   const [favorites, setFavorites] = useState<Set<string>>(new Set())
 
@@ -80,7 +79,6 @@ export default function FlashcardPage() {
   const resetProgress = () => {
     setCurrentIndex(0)
     setCardPage(0)
-    setShowSettings(false)
   }
 
   const toggleShuffle = () => {
@@ -95,7 +93,6 @@ export default function FlashcardPage() {
     }
     setIsShuffled(!isShuffled)
     setCardPage(0)
-    setShowSettings(false)
   }
 
   // Keyboard navigation
@@ -131,8 +128,9 @@ export default function FlashcardPage() {
       <header className="bg-[#0F0F23]/90 backdrop-blur-md border-b border-white/10">
         <div className="max-w-3xl mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2 text-white hover:text-[#EC4899] transition-colors">
-              <ArrowLeft size={20} />
+            <Link href="/" className="flex items-center gap-2 text-white/70 hover:text-white transition-colors">
+              <Home size={18} />
+              <span className="text-sm hidden sm:inline">หน้าแรก</span>
             </Link>
 
             <div className="text-center flex-1 mx-4">
@@ -146,12 +144,13 @@ export default function FlashcardPage() {
               )}
             </div>
 
-            <button
-              onClick={() => setShowSettings(!showSettings)}
-              className="p-2 rounded-lg hover:bg-white/10 transition-colors text-[#9CA3AF]"
+            <Link
+              href={`/vocabulary-set/${setId}/quiz`}
+              className="flex items-center gap-1.5 btn-pink text-white px-3 py-1.5 rounded-lg text-xs font-semibold"
             >
-              <Settings size={20} />
-            </button>
+              <HelpCircle size={14} />
+              <span className="hidden sm:inline">Quiz</span>
+            </Link>
           </div>
 
           {/* Stats Row */}
@@ -168,44 +167,6 @@ export default function FlashcardPage() {
           </div>
         </div>
       </header>
-
-      {/* Settings Dropdown */}
-      <AnimatePresence>
-        {showSettings && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="max-w-3xl mx-auto px-4 mt-2"
-          >
-            <div className="bg-[#1A1A2E] rounded-xl p-3 border border-white/10 space-y-2">
-              <button
-                onClick={resetProgress}
-                className="w-full flex items-center gap-3 p-3 rounded-lg bg-[#F87171]/10 hover:bg-[#F87171]/20 transition-colors text-left"
-              >
-                <RotateCcw size={18} className="text-[#F87171]" />
-                <span className="text-[#F87171] text-sm font-medium">🔄 เริ่มเรียนใหม่ตั้งแต่แรก</span>
-              </button>
-              <button
-                onClick={toggleShuffle}
-                className="w-full flex items-center gap-3 p-3 rounded-lg bg-[#60A5FA]/10 hover:bg-[#60A5FA]/20 transition-colors text-left"
-              >
-                <Shuffle size={18} className="text-[#60A5FA]" />
-                <span className="text-[#60A5FA] text-sm font-medium">
-                  🔀 {isShuffled ? 'กลับโหมดปกติ' : 'เปลี่ยนโหมดสุ่ม'}
-                </span>
-              </button>
-              <Link
-                href={`/vocabulary-set/${setId}/quiz`}
-                className="w-full flex items-center gap-3 p-3 rounded-lg bg-[#EC4899]/10 hover:bg-[#EC4899]/20 transition-colors"
-              >
-                <HelpCircle size={18} className="text-[#EC4899]" />
-                <span className="text-[#EC4899] text-sm font-medium">❓ ทำ Quiz</span>
-              </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Flashcard */}
       <main className="max-w-lg mx-auto px-4 py-6">
@@ -317,14 +278,15 @@ export default function FlashcardPage() {
         {/* Bottom Navigation */}
         <div className="flex items-center justify-between mt-4 gap-3">
           <button
-            onClick={toggleFavorite}
+            onClick={toggleShuffle}
             className={`p-3 rounded-xl transition-colors ${
-              favorites.has(currentVocab.id)
-                ? 'bg-[#EC4899]/20 text-[#EC4899]'
-                : 'bg-[#1A1A2E] text-[#9CA3AF] hover:text-[#EC4899]'
+              isShuffled
+                ? 'bg-[#60A5FA]/20 text-[#60A5FA]'
+                : 'bg-[#1A1A2E] text-[#9CA3AF] hover:text-[#60A5FA]'
             }`}
+            title={isShuffled ? 'กลับโหมดปกติ' : 'สุ่มคำศัพท์'}
           >
-            <Heart size={20} fill={favorites.has(currentVocab.id) ? 'currentColor' : 'none'} />
+            <Shuffle size={20} />
           </button>
 
           <button
