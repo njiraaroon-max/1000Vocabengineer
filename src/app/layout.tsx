@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'EngVocab1000 — คำศัพท์วิศวกรรม 1,000 คำ',
-  description: 'เรียนรู้คำศัพท์วิศวกรรมภาษาอังกฤษ 1,000 คำ ผ่าน Flashcard, Quiz และเกม Hangman',
+  title: 'EngineeringVocab — คำศัพท์วิศวกรรม 1,200 คำ',
+  description: 'เรียนรู้คำศัพท์วิศวกรรมภาษาอังกฤษ 1,200 คำ ผ่าน Flashcard, Quiz และเกม Hangman',
   icons: {
     icon: '/favicon.ico',
   },

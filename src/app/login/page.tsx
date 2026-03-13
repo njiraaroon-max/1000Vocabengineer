@@ -55,7 +55,7 @@ export default function LoginPage() {
             className="mx-auto mb-4 rounded-xl"
           />
           <h1 className="font-heading text-white text-2xl mb-1">
-            EngVocab<span className="text-[#EC4899]">1000</span>
+            Engineering<span className="text-[#EC4899]">Vocab</span>
           </h1>
           <p className="text-[#9CA3AF] text-sm mb-8">
             เข้าสู่ระบบเพื่อบันทึกความก้าวหน้าของคุณ

@@ -20,7 +20,7 @@ export default function Header() {
             className="rounded-lg"
           />
           <span className="font-heading text-white text-lg hidden sm:inline">
-            EngVocab<span className="text-[#EC4899]">1000</span>
+            Engineering<span className="text-[#EC4899]">Vocab</span>
           </span>
         </Link>
 
