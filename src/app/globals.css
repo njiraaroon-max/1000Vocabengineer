@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Prompt:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -27,6 +27,11 @@
 
 .font-heading {
   font-family: 'Dela Gothic One', system-ui, sans-serif;
+}
+
+.font-thai {
+  font-family: 'Sukhumvit Set', 'Prompt', 'Noto Sans Thai', system-ui, sans-serif;
+  font-weight: 700;
 }
 
 /* Gradient background utility */

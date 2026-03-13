@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, SkipForward, RotateCcw, Shuffle } from 'lucide-react'
 import HangmanDrawing from '@/components/HangmanDrawing'
@@ -13,6 +14,16 @@ const MAX_WRONG = 6
 const WORDS_PER_ROUND = 20
 
 export default function HangmanPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-main-gradient" />}>
+      <HangmanContent />
+    </Suspense>
+  )
+}
+
+function HangmanContent() {
+  const searchParams = useSearchParams()
+  const autoStarted = useRef(false)
   const [selectedSetId, setSelectedSetId] = useState<string | null>(null)
   const [gameWords, setGameWords] = useState<Vocabulary[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -47,6 +58,17 @@ export default function HangmanPage() {
     setPlayed(0)
     setGameStatus('playing')
   }
+
+  // Auto-start from query param (?set=xxx or ?set=all)
+  useEffect(() => {
+    if (autoStarted.current) return
+    const setParam = searchParams.get('set')
+    if (setParam) {
+      autoStarted.current = true
+      startGame(setParam)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams])
 
   const nextWord = () => {
     const nextIdx = currentIndex + 1
