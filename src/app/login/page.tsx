@@ -48,10 +48,10 @@ export default function LoginPage() {
         {/* Login Card */}
         <div className="bg-[#1A1A2E] rounded-2xl p-8 border border-white/5 text-center">
           <Image
-            src="/logo.svg"
+            src="/logo.png"
             alt="Step Up Academy"
-            width={80}
-            height={80}
+            width={100}
+            height={100}
             className="mx-auto mb-4 rounded-xl"
           />
           <h1 className="font-heading text-white text-2xl mb-1">

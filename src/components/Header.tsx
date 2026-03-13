@@ -13,10 +13,10 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="/logo.svg"
+            src="/logo.png"
             alt="Step Up Academy"
-            width={36}
-            height={36}
+            width={40}
+            height={40}
             className="rounded-lg"
           />
           <span className="font-heading text-white text-lg hidden sm:inline">
